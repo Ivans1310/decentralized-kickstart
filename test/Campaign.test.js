@@ -70,4 +70,34 @@ describe("Campaigns", () => {
     const request = await campaign.methods.requests(0).call();
     assert.strictEqual("Buy Baterries", request.description);
   });
+
+  it("process requests", async () => {
+    await campaign.methods.contribute().send({
+      from: accounts[0],
+      value: web3.utils.toWei("10", "ether"),
+    });
+
+    let balance_b = await web3.eth.getBalance(accounts[1]);
+    balance_b = parseFloat(web3.utils.fromWei(balance_b, "ether"));
+
+    await campaign.methods
+      .createRequest("A", web3.utils.toWei("5", "ether"), accounts[1])
+      .send({ from: accounts[0], gas: "1000000" });
+
+    await campaign.methods.approveRequest(0).send({
+      from: accounts[0],
+      gas: "1000000",
+    });
+
+    await campaign.methods.finalizeRequest(0).send({
+      from: accounts[0],
+      gas: "1000000",
+    });
+
+    let balance = await web3.eth.getBalance(accounts[1]);
+    balance = parseFloat(web3.utils.fromWei(balance, "ether"));
+    const final_balance = balance - balance_b;
+    console.log("final_balance:", final_balance);
+    assert(final_balance == 5);
+  });
 });
