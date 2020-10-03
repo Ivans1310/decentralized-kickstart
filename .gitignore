@@ -1,1 +1,8 @@
-/node_modules
+# Built
+.next
+.cache
+*.log
+bundles
+hint-report
+node_modules
+out
