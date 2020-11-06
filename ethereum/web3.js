@@ -15,7 +15,6 @@ if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
   window.ethereum.enable();
 } else {
   // We are on the server or the user has not installed Metamask
-  console.log("||||||||||||||||||||||||||Here infura provider");
   const provider = new Web3.providers.HttpProvider(
     "https://rinkeby.infura.io/v3/65f22c55e7ec47e1b76ce3dd780166aa"
   );
