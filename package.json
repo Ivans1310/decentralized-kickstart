@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha",
-    "build": "next build",
     "dev": "node server.js"
   },
   "author": "Ivan Sanchez",
