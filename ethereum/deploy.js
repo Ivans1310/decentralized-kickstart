@@ -1,12 +1,14 @@
+var envJSON = require("../.env");
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const Web3 = require("web3");
 const campaignFactory = require("./build/CampaignFactory.json");
 
 const provider = new HDWalletProvider(
-  "peanut amount mango level main benefit decide club genuine rose crowd voice",
+  "Add here the HD_WALLET PROVIDER SEED",
   "https://rinkeby.infura.io/v3/65f22c55e7ec47e1b76ce3dd780166aa"
 );
 
+console.log(process.env);
 const web3 = new Web3(provider);
 
 const deploy = async () => {

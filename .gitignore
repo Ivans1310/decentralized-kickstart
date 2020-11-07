@@ -6,3 +6,4 @@ bundles
 hint-report
 node_modules
 out
+.env
